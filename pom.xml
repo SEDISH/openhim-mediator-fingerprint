@@ -8,6 +8,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <javaCompilerVersion>1.8</javaCompilerVersion>
   </properties>
 
   <developers>
@@ -20,6 +21,9 @@
     <name>SolDevelo</name>
     <url>https://www.soldevelo.com</url>
   </organization>
+
+  <modules>
+  </modules>
 
   <build>
     <plugins>
@@ -68,7 +72,7 @@
             <phase>validate</phase>
             <configuration>
               <configLocation>checkstyle.xml</configLocation>
-              <encoding>UTF-8</encoding>
+              <encoding>${project.build.sourceEncoding}</encoding>
               <consoleOutput>true</consoleOutput>
               <logViolationsToConsole>true</logViolationsToConsole>
               <failOnViolation>true</failOnViolation>
@@ -92,8 +96,49 @@
         </executions>
       </plugin>
 
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.8</version>
+        <configuration>
+          <rulesets>
+            <ruleset>pmd.xml</ruleset>
+          </rulesets>
+          <linkXRef>true</linkXRef>
+          <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+          <minimumTokens>100</minimumTokens>
+          <targetJdk>${javaCompilerVersion}</targetJdk>
+          <printFailingErrors>true</printFailingErrors>
+        </configuration>
+        <executions>
+          <execution>
+            <id>validate</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+              <goal>cpd-check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
   </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.8</version>
+        <configuration>
+          <rulesets>
+            <ruleset>pmd.xml</ruleset>
+          </rulesets>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
 
   <dependencies>
 
