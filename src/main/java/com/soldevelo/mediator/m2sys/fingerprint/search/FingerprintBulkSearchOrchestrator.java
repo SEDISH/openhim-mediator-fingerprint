@@ -10,9 +10,9 @@ import org.openhim.mediator.engine.messages.MediatorHTTPRequest;
 
 public class FingerprintBulkSearchOrchestrator extends UntypedActor {
 
-    private LoggingAdapter log = Logging.getLogger(getContext().system(), this);
+    private LoggingAdapter log = Logging.getLogger(getContext().system(), this); //NOPMD
 
-    private final MediatorConfig config;
+    private final MediatorConfig config; //NOPMD
 
     public FingerprintBulkSearchOrchestrator(MediatorConfig config) {
         this.config = config;
