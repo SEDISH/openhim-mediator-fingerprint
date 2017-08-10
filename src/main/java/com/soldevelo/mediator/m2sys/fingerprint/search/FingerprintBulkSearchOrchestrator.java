@@ -9,10 +9,10 @@ import org.openhim.mediator.engine.messages.FinishRequest;
 import org.openhim.mediator.engine.messages.MediatorHTTPRequest;
 
 public class FingerprintBulkSearchOrchestrator extends UntypedActor {
-    LoggingAdapter log = Logging.getLogger(getContext().system(), this);
+
+    private LoggingAdapter log = Logging.getLogger(getContext().system(), this);
 
     private final MediatorConfig config;
-
 
     public FingerprintBulkSearchOrchestrator(MediatorConfig config) {
         this.config = config;
@@ -21,7 +21,8 @@ public class FingerprintBulkSearchOrchestrator extends UntypedActor {
     @Override
     public void onReceive(Object msg) throws Exception {
         if (msg instanceof MediatorHTTPRequest) {
-            FinishRequest finishRequest = new FinishRequest("A message from my new mediator!", "text/plain", HttpStatus.SC_OK);
+            FinishRequest finishRequest = new FinishRequest("A message from my new mediator!",
+                    "text/plain", HttpStatus.SC_OK);
             ((MediatorHTTPRequest) msg).getRequestHandler().tell(finishRequest, getSelf());
         } else {
             unhandled(msg);
