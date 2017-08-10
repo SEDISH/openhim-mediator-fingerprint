@@ -1,0 +1,33 @@
+{
+  "urn": "urn:mediator:fingerprint:search",
+  "version": "0.1.0",
+  "name": "M2sys fingerprint bulk search",
+  "description": "A base mediator for bulk searches",
+  "endpoints": [
+    {
+      "name": "M2sys fingerprint bulk search Route",
+      "host": "localhost",
+      "port": "6000",
+      "path": "/fingerprintBulkSearch",
+      "type": "http"
+    }
+  ],
+  "defaultChannelConfig": [
+    {
+      "name": "M2sys fingerprint bulk search",
+      "urlPattern": "^/fingerprintBulkSearch$",
+      "type": "http",
+      "allow": ["m2sysfingerprintbulksearch"],
+      "routes": [
+        {
+          "name": "M2sys fingerprint bulk search Route",
+          "host": "localhost",
+          "port": "6000",
+          "path": "/fingerprintBulkSearch",
+          "type": "http",
+          "primary": "true"
+        }
+      ]
+    }
+  ]
+}
